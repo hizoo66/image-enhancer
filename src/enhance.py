@@ -3,14 +3,16 @@ import numpy as np
 import os
 
 input_path = "../input/sample.jpg"
-output_path = "../output/enhanced.jpg"
+output_dir = "../output"
+os.makedirs(output_dir, exist_ok=True)
+
+alpha = 1.5   # 대비
+beta = 30     # 밝기
 
 img = cv2.imread(input_path)
-
-alpha = 1.3  # 대비
-beta = 20  # 밝기
-
 enhanced = cv2.convertScaleAbs(img, alpha=alpha, beta=beta)
-cv2.imwrite(output_path, enhanced)
 
-print("Saved:", output_path)
+save_path = os.path.join(output_dir, "enhanced.jpg")
+cv2.imwrite(save_path, enhanced)
+
+print("Saved:", save_path)
