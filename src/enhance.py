@@ -6,10 +6,13 @@ input_path = "../input/sample.jpg"
 output_dir = "../output"
 os.makedirs(output_dir, exist_ok=True)
 
-alpha = 1.5   # 대비
+
+
 beta = 30     # 밝기
 
 img = cv2.imread(input_path)
+mean = np.mean(img)
+alpha = 1.0 + (mean / 255)
 enhanced = cv2.convertScaleAbs(img, alpha=alpha, beta=beta)
 
 save_path = os.path.join(output_dir, "enhanced.jpg")
